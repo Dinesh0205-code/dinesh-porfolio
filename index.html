@@ -1,322 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dinesh Elangovan — AI/ML Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--accent:#C0392B;--accent2:#E74C3C;--accentsoft:#FAECE7;--accenttext:#993C1D}
-  body{font-family:var(--font-sans,sans-serif);background:var(--color-background-tertiary);color:var(--color-text-primary)}
-  .nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);position:sticky;top:0;z-index:10}
-  .nav-logo{font-size:18px;font-weight:500;color:var(--accent)}
-  .nav-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-  .nav-links a{font-size:13px;color:var(--color-text-secondary);text-decoration:none;cursor:pointer}
-  .nav-links a:hover{color:var(--accent)}
-  .hero{padding:5rem 2.5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary)}
-  .hero-badge{display:inline-block;background:#FAECE7;color:#993C1D;font-size:12px;padding:4px 14px;border-radius:20px;margin-bottom:1rem;font-weight:500}
-  .hero h1{font-size:40px;font-weight:500;line-height:1.15;margin-bottom:1rem}
-  .hero h1 span{color:var(--accent)}
-  .hero p{font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:1.5rem}
-  .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-  .btn-primary{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500}
-  .btn-outline{background:transparent;color:var(--color-text-primary);border:0.5px solid var(--color-border-secondary);padding:10px 22px;border-radius:8px;font-size:14px;cursor:pointer}
-  .hero-visual{display:flex;justify-content:center;align-items:center}
-  .avatar-ring{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,#FAECE7,#F1EFE8);display:flex;align-items:center;justify-content:center;position:relative;border:2px solid #E74C3C}
-  .avatar-initials{font-size:52px;font-weight:500;color:var(--accent)}
-  .floating-badge{position:absolute;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:6px 12px;font-size:11px;font-weight:500;white-space:nowrap;color:var(--color-text-secondary)}
-  .fb1{bottom:-10px;left:-30px;color:#993C1D}
-  .fb2{top:10px;right:-40px;color:#2C2C2A}
-  section{padding:3.5rem 2.5rem}
-  section:nth-child(even){background:var(--color-background-primary)}
-  section:nth-child(odd){background:var(--color-background-secondary)}
-  .section-label{font-size:12px;font-weight:500;letter-spacing:.08em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem}
-  .section-title{font-size:26px;font-weight:500;margin-bottom:.4rem}
-  .section-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:2rem}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-  .about-text{font-size:15px;line-height:1.75;color:var(--color-text-secondary)}
-  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .stat-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem 1.25rem;text-align:center}
-  .stat-num{font-size:24px;font-weight:500;color:var(--accent)}
-  .stat-label{font-size:12px;color:var(--color-text-secondary);margin-top:4px}
-  .skills-group{margin-bottom:1.75rem}
-  .skills-group-title{font-size:13px;font-weight:500;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em}
-  .skills-grid{display:flex;flex-wrap:wrap;gap:8px}
-  .skill-pill{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--color-text-primary)}
-  .skill-pill.red{background:#FAECE7;color:#993C1D;border-color:#F0997B}
+    :root {
+      --red: #C0392B;
+      --red-bright: #E74C3C;
+      --red-soft: #FAECE7;
+      --red-text: #7B241C;
+      --black: #111110;
+      --gray-dark: #1E1E1C;
+      --gray-mid: #2C2C2A;
+      --gray: #5F5E5A;
+      --gray-light: #B4B2A9;
+      --cream: #F7F5F0;
+      --white: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
+    }
 
-  /* INTERNSHIP TIMELINE */
-  .timeline{display:flex;flex-direction:column;gap:0;max-width:760px;position:relative}
-  .timeline::before{content:'';position:absolute;left:19px;top:24px;bottom:24px;width:2px;background:var(--color-border-tertiary)}
-  .intern-item{display:flex;gap:1.5rem;align-items:flex-start;position:relative}
-  .intern-item+.intern-item{margin-top:1.5rem}
-  .timeline-dot{width:40px;height:40px;border-radius:50%;background:var(--color-background-primary);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-size:14px;font-weight:600;color:var(--accent)}
-  .intern-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.5rem;flex:1;position:relative}
-  .intern-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:3px 0 0 3px}
-  .intern-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:.5rem}
-  .intern-company{font-size:16px;font-weight:500;color:var(--color-text-primary)}
-  .intern-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .role-tag{background:#FAECE7;color:#993C1D;font-size:11px;font-weight:500;padding:3px 11px;border-radius:20px;border:0.5px solid rgba(192,57,43,.15)}
-  .duration-tag{font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary);padding:3px 10px;border-radius:6px;border:0.5px solid var(--color-border-tertiary)}
-  .intern-divider{height:0.5px;background:var(--color-border-tertiary);margin:.75rem 0}
-  .intern-bullets{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
-  .intern-bullet{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
-  .bullet-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px}
-  .stack-pills{display:flex;flex-wrap:wrap;gap:6px}
-  .stack-pill{font-size:11px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:3px 9px;border-radius:6px;border:0.5px solid var(--color-border-tertiary)}
+    html { scroll-behavior: smooth; }
 
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-  .project-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:10px}
-  .project-tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;width:fit-content;background:#FAECE7;color:#993C1D}
-  .project-title{font-size:16px;font-weight:500}
-  .project-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.65}
-  .achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .ach-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.25rem;display:flex;gap:14px;align-items:flex-start}
-  .ach-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
-  .ach-gold{background:#FAEEDA;color:#854F0B}
-  .ach-red{background:#FAECE7;color:#993C1D}
-  .ach-gray{background:#F1EFE8;color:#5F5E5A}
-  .ach-title{font-size:13px;font-weight:500;line-height:1.4}
-  .ach-sub{font-size:12px;color:var(--accent);font-weight:500;margin-bottom:3px}
-  .ach-desc{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
-  .edu-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.5rem;max-width:600px}
-  .edu-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
-  .edu-name{font-size:17px;font-weight:500}
-  .edu-year{font-size:12px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:3px 10px;border-radius:6px;border:0.5px solid var(--color-border-tertiary)}
-  .edu-degree{font-size:14px;color:var(--color-text-secondary)}
-  .contact-wrap{max-width:560px}
-  .contact-intro{font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:2rem}
-  .contact-links{display:flex;flex-direction:column;gap:12px}
-  .contact-row{display:flex;align-items:center;gap:12px;padding:1rem 1.25rem;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;text-decoration:none}
-  .contact-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500}
-  .ci-red{background:#FAECE7;color:#993C1D}
-  .ci-gray{background:#F1EFE8;color:#444441}
-  .ci-blue{background:#E6F1FB;color:#185FA5}
-  .contact-label{font-size:12px;color:var(--color-text-secondary)}
-  .contact-val{font-size:14px;font-weight:500;color:var(--color-text-primary)}
-</style>
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-<h2 style="position:absolute;left:-9999px">Dinesh Elangovan — CS Student Portfolio</h2>
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 3rem;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--red); letter-spacing: -.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: var(--gray);
+      text-decoration: none; letter-spacing: .03em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--red); }
 
-<nav class="nav">
-  <span class="nav-logo">Dinesh.dev</span>
-  <div class="nav-links">
-    <a>About</a><a>Skills</a><a>Experience</a><a>Projects</a><a>Achievements</a><a>Contact</a>
-  </div>
-</nav>
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+      padding: 8rem 3rem 4rem;
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--red-soft); color: var(--red-text);
+      font-size: 12px; font-weight: 500; padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(192,57,43,0.15);
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; color: var(--red); }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 58px; font-weight: 700;
+      line-height: 1.05; margin-bottom: 1.25rem;
+      letter-spacing: -.03em;
+    }
+    .hero h1 .name { color: var(--red); display: block; }
+    .hero-sub {
+      font-size: 15px; color: var(--gray);
+      line-height: 1.75; margin-bottom: 2rem; max-width: 440px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      border: none; padding: 12px 26px;
+      border-radius: 8px; font-size: 14px; font-weight: 500;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background .2s, transform .15s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-bright); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--black);
+      border: 1px solid var(--border); padding: 12px 26px;
+      border-radius: 8px; font-size: 14px; font-weight: 500;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s, transform .15s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-1px); }
 
-<div class="hero">
-  <div>
-    <span class="hero-badge">Open to Internships & Opportunities</span>
-    <h1>Hi, I'm <span>Dinesh<br>Elangovan</span></h1>
-    <p>AI/ML enthusiast and CS undergrad at Agni College of Technology. I build intelligent systems — from digital twins for cancer treatment to HR chatbots powered by LangChain.</p>
-    <div class="hero-btns">
-      <button class="btn-primary">View Projects</button>
-      <button class="btn-outline">Get in Touch</button>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="avatar-ring" style="position:relative">
-      <span class="avatar-initials">DE</span>
-      <span class="floating-badge fb1">🏆 IEEE 2nd Prize</span>
-      <span class="floating-badge fb2">BE CSE '26</span>
-    </div>
-  </div>
-</div>
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .avatar-wrap {
+      position: relative; width: 280px; height: 280px;
+    }
+    .avatar-circle {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: linear-gradient(135deg, #FAECE7 0%, #F1EFE8 100%);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(192,57,43,0.25);
+      font-family: 'Syne', sans-serif;
+      font-size: 72px; font-weight: 700; color: var(--red);
+    }
+    .float-chip {
+      position: absolute;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 7px 14px;
+      font-size: 12px; font-weight: 500; white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .chip1 { bottom: 10px; left: -40px; color: var(--red-text); }
+    .chip2 { top: 20px; right: -50px; color: var(--gray-mid); }
+    .chip3 { bottom: 60px; right: -60px; color: var(--gray); font-size: 11px; }
 
-<section>
-  <div class="section-label">Who I Am</div>
-  <div class="section-title">About me</div>
-  <div class="section-sub">A quick look at my journey so far</div>
-  <div class="about-grid">
-    <p class="about-text">I'm a Computer Science undergrad passionate about AI, Machine Learning, and Data Science. I've completed 3 internships, built projects across healthcare AI and NLP, and competed in national-level hackathons including IEEE, Google Developers Group, and JIPMER & IIT Bombay.</p>
-    <div class="about-stats">
-      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Internships</div></div>
-      <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Hackathons</div></div>
-      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Top 10 finishes</div></div>
-      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">AI/ML projects</div></div>
-    </div>
-  </div>
-</section>
+    /* SECTIONS */
+    section { padding: 5rem 3rem; }
+    section:nth-child(odd) { background: var(--cream); }
+    section:nth-child(even) { background: var(--white); }
 
-<section>
-  <div class="section-label">What I know</div>
-  <div class="section-title">Skills</div>
-  <div class="section-sub">Languages, frameworks, and tools I work with</div>
-  <div class="skills-group">
-    <div class="skills-group-title">Programming</div>
-    <div class="skills-grid">
-      <span class="skill-pill red">Python</span><span class="skill-pill red">C</span><span class="skill-pill red">C++</span>
-    </div>
-  </div>
-  <div class="skills-group">
-    <div class="skills-group-title">AI / ML</div>
-    <div class="skills-grid">
-      <span class="skill-pill">ML Model Development</span><span class="skill-pill">Training & Evaluation</span><span class="skill-pill">Supervised Learning</span><span class="skill-pill">Unsupervised Learning</span><span class="skill-pill">Prompt Engineering</span>
-    </div>
-  </div>
-  <div class="skills-group">
-    <div class="skills-group-title">Data Science</div>
-    <div class="skills-grid">
-      <span class="skill-pill">Data Cleaning</span><span class="skill-pill">EDA</span><span class="skill-pill">Feature Engineering</span><span class="skill-pill">Visualization</span>
-    </div>
-  </div>
-  <div class="skills-group">
-    <div class="skills-group-title">Frameworks</div>
-    <div class="skills-grid">
-      <span class="skill-pill">Scikit-learn</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">PyTorch (basic)</span><span class="skill-pill">LangChain</span>
-    </div>
-  </div>
-  <div class="skills-group">
-    <div class="skills-group-title">Tools & Database</div>
-    <div class="skills-grid">
-      <span class="skill-pill">Git</span><span class="skill-pill">GitHub</span><span class="skill-pill">Jupyter Notebook</span><span class="skill-pill">VS Code</span><span class="skill-pill">SQL</span>
-    </div>
-  </div>
-</section>
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px; font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: .4rem; line-height: 1.1;
+    }
+    .section-desc {
+      font-size: 14px; color: var(--gray);
+      margin-bottom: 2.5rem; max-width: 520px;
+    }
 
-<section>
-  <div class="section-label">Work Experience</div>
-  <div class="section-title">Internships</div>
-  <div class="section-sub">3 internships across AI/ML and Data Science</div>
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text { font-size: 15px; color: var(--gray); line-height: 1.8; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-box {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem;
+      text-align: center;
+    }
+    .stat-box:nth-child(1) { background: var(--red-soft); border-color: rgba(192,57,43,.15); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 30px; font-weight: 700; color: var(--red);
+    }
+    .stat-label { font-size: 12px; color: var(--gray); margin-top: 4px; }
 
-  <div class="timeline">
+    /* SKILLS */
+    .skill-group { margin-bottom: 2rem; }
+    .skill-group-name {
+      font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gray);
+      margin-bottom: 10px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 7px; padding: 6px 15px;
+      font-size: 13px; font-weight: 400; color: var(--black);
+      transition: border-color .2s, color .2s;
+    }
+    .pill:hover { border-color: var(--red); color: var(--red); }
+    .pill.highlight { background: var(--red-soft); color: var(--red-text); border-color: rgba(192,57,43,.2); font-weight: 500; }
 
-    <!-- PROEDUVATE -->
-    <div class="intern-item">
-      <div class="timeline-dot">1</div>
-      <div class="intern-card">
-        <div class="intern-top">
-          <div class="intern-company">PROEDUVATE</div>
-          <div class="intern-meta">
-            <span class="role-tag">AI/ML Intern</span>
-            <span class="duration-tag">Sep 2024 – Apr 2025</span>
-          </div>
-        </div>
-        <div class="intern-divider"></div>
-        <div class="intern-bullets">
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Built an AI-powered HR assistance chatbot to automate employee queries using LangChain-based conversational workflows.</span></div>
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Developed a resume descriptive AI system for candidate analysis, generating structured insights from unstructured resume data.</span></div>
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Implemented prompt chaining and response optimization pipelines to improve accuracy and relevance of LLM outputs.</span></div>
-        </div>
-        <div class="stack-pills">
-          <span class="stack-pill">Python</span><span class="stack-pill">LangChain</span><span class="stack-pill">Prompt Engineering</span><span class="stack-pill">NLP</span><span class="stack-pill">LLM</span>
-        </div>
+    /* INTERNSHIP */
+    .intern-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem; max-width: 740px;
+      position: relative; overflow: hidden;
+    }
+    .intern-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--red); border-radius: 4px 0 0 4px;
+    }
+    .intern-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem; }
+    .intern-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--black);
+    }
+    .intern-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .role-tag {
+      background: var(--red-soft); color: var(--red-text);
+      font-size: 12px; font-weight: 500; padding: 4px 12px;
+      border-radius: 20px; border: 1px solid rgba(192,57,43,.15);
+    }
+    .duration-tag {
+      font-size: 12px; color: var(--gray);
+      background: var(--cream); padding: 4px 12px;
+      border-radius: 6px; border: 1px solid var(--border);
+    }
+    .intern-divider { height: 1px; background: var(--border); margin-bottom: 1rem; }
+    .intern-bullets { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
+    .intern-bullet { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--gray); line-height: 1.65; }
+    .bullet-marker {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--red-soft); border: 1px solid rgba(192,57,43,.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .bullet-marker::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); display: block; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+    .project-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .project-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--red-text);
+      background: var(--red-soft); padding: 4px 12px;
+      border-radius: 20px; width: fit-content;
+      border: 1px solid rgba(192,57,43,.15);
+    }
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px; font-weight: 700; color: var(--black); line-height: 1.3;
+    }
+    .project-desc { font-size: 13px; color: var(--gray); line-height: 1.7; flex: 1; }
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .stack-chip {
+      font-size: 11px; background: var(--cream);
+      color: var(--gray); padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+    }
+
+    /* ACHIEVEMENTS */
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 16px; }
+    .ach-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: transform .2s;
+    }
+    .ach-card:hover { transform: translateY(-2px); }
+    .ach-icon {
+      width: 42px; height: 42px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-gold { background: #FEF9EC; }
+    .icon-red { background: var(--red-soft); }
+    .icon-gray { background: var(--cream); }
+    .ach-prize {
+      font-size: 11px; font-weight: 600; color: var(--red);
+      letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .ach-title { font-size: 13px; font-weight: 500; color: var(--black); line-height: 1.4; margin-bottom: 4px; }
+    .ach-desc { font-size: 12px; color: var(--gray); line-height: 1.55; }
+
+    /* EDUCATION */
+    .edu-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem; max-width: 620px;
+    }
+    .edu-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: .6rem; }
+    .edu-name { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; }
+    .edu-year {
+      font-size: 12px; background: var(--cream);
+      color: var(--gray); padding: 4px 12px;
+      border-radius: 6px; border: 1px solid var(--border);
+    }
+    .edu-degree { font-size: 14px; color: var(--gray); }
+
+    /* CONTACT */
+    .contact-intro { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 2rem; max-width: 500px; }
+    .contact-items { display: flex; flex-direction: column; gap: 12px; max-width: 540px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+      text-decoration: none; color: inherit;
+      transition: border-color .2s, transform .15s;
+    }
+    .contact-item:hover { border-color: var(--red); transform: translateX(4px); }
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 600; flex-shrink: 0;
+    }
+    .ci-r { background: var(--red-soft); color: var(--red-text); }
+    .ci-b { background: #E8F0FB; color: #1A56A0; }
+    .ci-g { background: #EDFBF0; color: #1A6B34; }
+    .contact-meta .label { font-size: 11px; color: var(--gray-light); }
+    .contact-meta .value { font-size: 14px; font-weight: 500; color: var(--black); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); color: var(--gray-light);
+      text-align: center; padding: 2rem 3rem;
+      font-size: 13px;
+    }
+    footer span { color: var(--red); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero > * { animation: fadeUp .6s ease both; }
+    .hero > *:nth-child(2) { animation-delay: .15s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; text-align: center; }
+      .hero h1 { font-size: 38px; }
+      .hero-sub { margin: 0 auto 1.5rem; }
+      .hero-btns { justify-content: center; }
+      .hero-visual { display: none; }
+      section { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Dinesh.dev</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">Open to Internships &amp; Opportunities</div>
+      <h1>Hi, I'm<span class="name">Dinesh Elangovan</span></h1>
+      <p class="hero-sub">AI/ML enthusiast and CS undergrad at Agni College of Technology. I build intelligent systems — from digital twins for cancer treatment to HR chatbots powered by LangChain.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
       </div>
     </div>
-
-    <!-- PRODIGY INFOTECH -->
-    <div class="intern-item">
-      <div class="timeline-dot">2</div>
-      <div class="intern-card">
-        <div class="intern-top">
-          <div class="intern-company">Prodigy Infotech</div>
-          <div class="intern-meta">
-            <span class="role-tag">Data Science Intern</span>
-            <span class="duration-tag">Aug 12 – Sep 12, 2024</span>
-          </div>
-        </div>
-        <div class="intern-divider"></div>
-        <div class="intern-bullets">
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Performed data preprocessing and exploratory data analysis on real-world datasets.</span></div>
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Built machine learning models and evaluated performance using standard metrics.</span></div>
-        </div>
-        <div class="stack-pills">
-          <span class="stack-pill">Python</span><span class="stack-pill">Pandas</span><span class="stack-pill">Scikit-learn</span><span class="stack-pill">EDA</span>
-        </div>
+    <div class="hero-visual">
+      <div class="avatar-wrap">
+        <div class="avatar-circle">DE</div>
+        <div class="float-chip chip1">🥈 IEEE 2nd Prize</div>
+        <div class="float-chip chip2">BE CSE '26</div>
+        <div class="float-chip chip3">AI/ML Intern @ PROEDUVATE</div>
       </div>
     </div>
-
-    <!-- PINNACLE LABS -->
-    <div class="intern-item">
-      <div class="timeline-dot">3</div>
-      <div class="intern-card">
-        <div class="intern-top">
-          <div class="intern-company">Pinnacle Labs Pvt Ltd</div>
-          <div class="intern-meta">
-            <span class="role-tag">Data Science Intern</span>
-            <span class="duration-tag">Jul 9 – Aug 8, 2025</span>
-          </div>
-        </div>
-        <div class="intern-divider"></div>
-        <div class="intern-bullets">
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Cleaned and analyzed datasets using Python and performed exploratory data analysis to uncover key patterns.</span></div>
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Built and evaluated machine learning models for predictive tasks with measurable accuracy improvements.</span></div>
-          <div class="intern-bullet"><span class="bullet-dot"></span><span>Visualized data insights using charts and dashboards to support data-driven business decisions.</span></div>
-        </div>
-        <div class="stack-pills">
-          <span class="stack-pill">Python</span><span class="stack-pill">Pandas</span><span class="stack-pill">Scikit-learn</span><span class="stack-pill">Matplotlib</span><span class="stack-pill">EDA</span>
-        </div>
-      </div>
-    </div>
-
   </div>
-</section>
 
-<section>
-  <div class="section-label">What I've built</div>
-  <div class="section-title">Projects</div>
-  <div class="section-sub">Things I've designed, trained, and shipped</div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <span class="project-tag">Healthcare AI</span>
-      <div class="project-title">Digital Twin for Lung Cancer Treatment</div>
-      <p class="project-desc">Built a predictive digital twin using TCGA-LUAD clinical and RNA-Seq genomic data. Applied normalization and feature engineering to simulate patient treatment outcomes.</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-eyebrow">Who I Am</div>
+    <div class="section-title">About me</div>
+    <p class="section-desc">A quick look at my journey so far</p>
+    <div class="about-grid">
+      <p class="about-text">I'm a Computer Science undergrad passionate about AI, Machine Learning, and Data Science. I've built projects across healthcare AI, NLP, and EdTech — and competed in national-level hackathons including IEEE, Google Developers Group, and JIPMER &amp; IIT Bombay. Currently interning at PROEDUVATE, I love turning complex data into meaningful, real-world solutions.</p>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">AI/ML projects</div></div>
+        <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Hackathons</div></div>
+        <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Top 10 finishes</div></div>
+        <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Internship</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-eyebrow">What I Know</div>
+    <div class="section-title">Skills</div>
+    <p class="section-desc">Languages, frameworks, and tools I work with</p>
+
+    <div class="skill-group">
+      <div class="skill-group-name">Programming</div>
+      <div class="pills">
+        <span class="pill highlight">Python</span>
+        <span class="pill highlight">C</span>
+        <span class="pill highlight">C++</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-name">AI / ML</div>
+      <div class="pills">
+        <span class="pill">ML Model Development</span>
+        <span class="pill">Training &amp; Evaluation</span>
+        <span class="pill">Supervised Learning</span>
+        <span class="pill">Unsupervised Learning</span>
+        <span class="pill">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-name">Data Science</div>
+      <div class="pills">
+        <span class="pill">Data Cleaning</span>
+        <span class="pill">EDA</span>
+        <span class="pill">Feature Engineering</span>
+        <span class="pill">Visualization</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-name">Frameworks</div>
+      <div class="pills">
+        <span class="pill">Scikit-learn</span>
+        <span class="pill">TensorFlow</span>
+        <span class="pill">PyTorch (basic)</span>
+        <span class="pill">LangChain</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-name">Tools &amp; Database</div>
+      <div class="pills">
+        <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
+        <span class="pill">Jupyter Notebook</span>
+        <span class="pill">VS Code</span>
+        <span class="pill">SQL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERNSHIP -->
+  <section id="experience">
+    <div class="section-eyebrow">Work Experience</div>
+    <div class="section-title">Internship</div>
+    <p class="section-desc">Real-world AI/ML experience</p>
+    <div class="intern-card">
+      <div class="intern-top">
+        <div class="intern-company">PROEDUVATE</div>
+        <div class="intern-meta">
+          <span class="role-tag">AI/ML Intern</span>
+          <span class="duration-tag">Sep 2024 – Apr 2025</span>
+        </div>
+      </div>
+      <div class="intern-divider"></div>
+      <div class="intern-bullets">
+        <div class="intern-bullet">
+          <div class="bullet-marker"></div>
+          <span>Built an AI-powered HR assistance chatbot to automate employee queries using LangChain-based conversational workflows.</span>
+        </div>
+        <div class="intern-bullet">
+          <div class="bullet-marker"></div>
+          <span>Developed a resume descriptive AI system for candidate analysis, generating structured insights from unstructured resume data.</span>
+        </div>
+        <div class="intern-bullet">
+          <div class="bullet-marker"></div>
+          <span>Implemented prompt chaining and response optimization pipelines to improve accuracy and relevance of LLM outputs.</span>
+        </div>
+      </div>
       <div class="stack-pills">
-        <span class="stack-pill">Python</span><span class="stack-pill">Scikit-learn</span><span class="stack-pill">TensorFlow</span><span class="stack-pill">Pandas</span><span class="stack-pill">EDA</span>
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">LangChain</span>
+        <span class="stack-chip">Prompt Engineering</span>
+        <span class="stack-chip">NLP</span>
+        <span class="stack-chip">LLM</span>
       </div>
     </div>
-    <div class="project-card">
-      <span class="project-tag">NLP / Chatbot</span>
-      <div class="project-title">HR Assistance Chatbot</div>
-      <p class="project-desc">Designed an AI-powered chatbot for HR policy queries using LangChain with context-aware retrieval for accurate, natural responses.</p>
-      <div class="stack-pills">
-        <span class="stack-pill">Python</span><span class="stack-pill">LangChain</span><span class="stack-pill">Prompt Engineering</span><span class="stack-pill">NLP</span><span class="stack-pill">LLM</span>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-eyebrow">What I've Built</div>
+    <div class="section-title">Projects</div>
+    <p class="section-desc">Things I've designed, trained, and shipped</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-tag">Healthcare AI</span>
+        <div class="project-name">Digital Twin for Lung Cancer Treatment</div>
+        <p class="project-desc">Built a predictive digital twin using TCGA-LUAD clinical and RNA-Seq genomic data. Preprocessed multi-modal datasets, applied normalization and feature engineering to simulate patient treatment outcomes with high fidelity.</p>
+        <div class="stack-pills">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">Scikit-learn</span>
+          <span class="stack-chip">TensorFlow</span>
+          <span class="stack-chip">Pandas</span>
+          <span class="stack-chip">RNA-Seq Data</span>
+          <span class="stack-chip">EDA</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">NLP / Chatbot</span>
+        <div class="project-name">HR Assistance Chatbot</div>
+        <p class="project-desc">Designed and developed an AI-powered chatbot for answering HR policy queries. Built end-to-end conversational workflows using LangChain with context-aware retrieval, enabling accurate and natural policy responses at scale.</p>
+        <div class="stack-pills">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">LangChain</span>
+          <span class="stack-chip">Prompt Engineering</span>
+          <span class="stack-chip">NLP</span>
+          <span class="stack-chip">LLM</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="section-label">Recognition</div>
-  <div class="section-title">Achievements</div>
-  <div class="section-sub">Competitions, hackathons, and programs I've been part of</div>
-  <div class="achievements-grid">
-    <div class="ach-card"><div class="ach-icon ach-gold">🥈</div><div><div class="ach-sub">2nd Prize</div><div class="ach-title">IEEE Communications Society Hackathon</div><div class="ach-desc">Built an Eco Cycle Management App promoting sustainable waste and recycling management.</div></div></div>
-    <div class="ach-card"><div class="ach-icon ach-red">🏅</div><div><div class="ach-sub">Top 10 Finalist</div><div class="ach-title">Google Developers Group 24-Hour Hackathon</div><div class="ach-desc">Among 150+ teams. Built an EdTech platform improving learning through digital content and interactive features.</div></div></div>
-    <div class="ach-card"><div class="ach-icon ach-red">🏅</div><div><div class="ach-sub">Top 10 Finalist</div><div class="ach-title">ACM NextGen Hackathon</div><div class="ach-desc">Built a Digital Twin for Lung Cancer (LUAD) using patient clinical and genomic data to simulate treatment outcomes.</div></div></div>
-    <div class="ach-card"><div class="ach-icon ach-gray">📜</div><div><div class="ach-sub">Shortlisted</div><div class="ach-title">AICTE & MoE IDE Bootcamp</div><div class="ach-desc">Completed a 5-day national-level Innovation, Design & Entrepreneurship bootcamp.</div></div></div>
-    <div class="ach-card"><div class="ach-icon ach-gray">🩺</div><div><div class="ach-sub">Participant</div><div class="ach-title">National MedTech Hackathon — JIPMER & IIT Bombay</div><div class="ach-desc">Developed an Early Cardiac Risk Detection App using rapid reflex-based tests.</div></div></div>
-    <div class="ach-card"><div class="ach-icon ach-gray">💡</div><div><div class="ach-sub">Participant</div><div class="ach-title">HappyFox & CMR Institute Hackathon</div><div class="ach-desc">Competed in a collaborative industry-academic hackathon.</div></div></div>
-  </div>
-</section>
-
-<section>
-  <div class="section-label">Where I study</div>
-  <div class="section-title">Education</div>
-  <div class="section-sub">Academic background</div>
-  <div class="edu-card">
-    <div class="edu-header">
-      <div class="edu-name">Agni College of Technology</div>
-      <span class="edu-year">2022 – 2026</span>
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-eyebrow">Recognition</div>
+    <div class="section-title">Achievements</div>
+    <p class="section-desc">Competitions, hackathons, and programs I've been part of</p>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-icon icon-gold">🥈</div>
+        <div>
+          <div class="ach-prize">2nd Prize</div>
+          <div class="ach-title">IEEE Communications Society Hackathon</div>
+          <div class="ach-desc">Built an Eco Cycle Management App promoting sustainable waste and recycling management.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon icon-red">🏅</div>
+        <div>
+          <div class="ach-prize">Top 10 Finalist</div>
+          <div class="ach-title">Google Developers Group 24-Hour Hackathon</div>
+          <div class="ach-desc">Among 150+ teams. Built an EdTech platform improving learning through digital content and interactive features.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon icon-red">🏅</div>
+        <div>
+          <div class="ach-prize">Top 10 Finalist</div>
+          <div class="ach-title">ACM NextGen Hackathon</div>
+          <div class="ach-desc">Built a Digital Twin for Lung Cancer (LUAD) using patient clinical and genomic data to simulate treatment outcomes.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon icon-gray">📜</div>
+        <div>
+          <div class="ach-prize">Shortlisted</div>
+          <div class="ach-title">AICTE &amp; MoE IDE Bootcamp</div>
+          <div class="ach-desc">Completed a 5-day national-level Innovation, Design &amp; Entrepreneurship bootcamp by AICTE &amp; MoE Innovation Cell.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon icon-gray">🩺</div>
+        <div>
+          <div class="ach-prize">Participant</div>
+          <div class="ach-title">National MedTech Hackathon — JIPMER &amp; IIT Bombay</div>
+          <div class="ach-desc">Developed an Early Cardiac Risk Detection App to identify autonomic dysfunction using rapid reflex-based tests.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon icon-gray">💡</div>
+        <div>
+          <div class="ach-prize">Participant</div>
+          <div class="ach-title">HappyFox &amp; CMR Institute Hackathon</div>
+          <div class="ach-desc">Competed in a collaborative industry-academic hackathon organized by HappyFox and CMR Institute.</div>
+        </div>
+      </div>
     </div>
-    <div class="edu-degree">Bachelor of Engineering — Computer Science & Engineering</div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="section-label">Let's talk</div>
-  <div class="section-title">Contact</div>
-  <div class="contact-wrap">
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-eyebrow">Where I Study</div>
+    <div class="section-title">Education</div>
+    <p class="section-desc">Academic background</p>
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-name">Agni College of Technology</div>
+        <span class="edu-year">2022 – 2026</span>
+      </div>
+      <div class="edu-degree">Bachelor of Engineering — Computer Science &amp; Engineering</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-eyebrow">Let's Talk</div>
+    <div class="section-title">Contact</div>
     <p class="contact-intro">I'm actively looking for internships, research roles, and interesting AI/ML collaborations. Reach out — I reply fast!</p>
-    <div class="contact-links">
-      <a class="contact-row" href="mailto:dineshe0205@gmail.com">
-        <div class="contact-icon ci-red">✉</div>
-        <div><div class="contact-label">Email</div><div class="contact-val">dineshe0205@gmail.com</div></div>
+    <div class="contact-items">
+      <a class="contact-item" href="mailto:dineshe0205@gmail.com">
+        <div class="contact-icon ci-r">✉</div>
+        <div class="contact-meta">
+          <div class="label">Email</div>
+          <div class="value">dineshe0205@gmail.com</div>
+        </div>
       </a>
-      <a class="contact-row" href="https://www.linkedin.com/in/dinesh-elangovan-ba2935290/">
-        <div class="contact-icon ci-blue">in</div>
-        <div><div class="contact-label">LinkedIn</div><div class="contact-val">dinesh-elangovan-ba2935290</div></div>
+      <a class="contact-item" href="https://www.linkedin.com/in/dinesh-elangovan-ba2935290/" target="_blank">
+        <div class="contact-icon ci-b">in</div>
+        <div class="contact-meta">
+          <div class="label">LinkedIn</div>
+          <div class="value">dinesh-elangovan-ba2935290</div>
+        </div>
       </a>
-      <a class="contact-row" href="https://github.com/Dinesh0205-code">
-        <div class="contact-icon ci-gray">⌥</div>
-        <div><div class="contact-label">GitHub</div><div class="contact-val">Dinesh0205-code</div></div>
+      <a class="contact-item" href="https://github.com/Dinesh0205-code" target="_blank">
+        <div class="contact-icon ci-g">⌥</div>
+        <div class="contact-meta">
+          <div class="label">GitHub</div>
+          <div class="value">Dinesh0205-code</div>
+        </div>
       </a>
     </div>
-  </div>
-</section>
+  </section>
+
+  <footer>
+    <p>Designed &amp; built by <span>Dinesh Elangovan</span> · 2025</p>
+  </footer>
+
+</body>
+</html>
