@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --red: #C0392B;
       --red-bright: #E74C3C;
@@ -22,9 +21,7 @@
       --white: #FFFFFF;
       --border: rgba(0,0,0,0.08);
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
@@ -110,14 +107,11 @@
       text-decoration: none; display: inline-block;
     }
     .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-1px); }
-
     .hero-visual {
       display: flex; justify-content: center; align-items: center;
       position: relative;
     }
-    .avatar-wrap {
-      position: relative; width: 280px; height: 280px;
-    }
+    .avatar-wrap { position: relative; width: 280px; height: 280px; }
     .avatar-circle {
       width: 280px; height: 280px; border-radius: 50%;
       background: linear-gradient(135deg, #FAECE7 0%, #F1EFE8 100%);
@@ -135,17 +129,15 @@
     }
     .chip1 { bottom: 10px; left: -40px; color: var(--red-text); }
     .chip2 { top: 20px; right: -50px; color: var(--gray-mid); }
-    .chip3 { bottom: 60px; right: -60px; color: var(--gray); font-size: 11px; }
+    .chip3 { bottom: 70px; right: -70px; color: var(--gray); font-size: 11px; }
 
     /* SECTIONS */
     section { padding: 5rem 3rem; }
     section:nth-child(odd) { background: var(--cream); }
     section:nth-child(even) { background: var(--white); }
-
     .section-eyebrow {
       font-size: 11px; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--red);
-      margin-bottom: .6rem;
+      text-transform: uppercase; color: var(--red); margin-bottom: .6rem;
     }
     .section-title {
       font-family: 'Syne', sans-serif;
@@ -163,14 +155,10 @@
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .stat-box {
       background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.25rem;
-      text-align: center;
+      border-radius: 12px; padding: 1.25rem; text-align: center;
     }
     .stat-box:nth-child(1) { background: var(--red-soft); border-color: rgba(192,57,43,.15); }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 30px; font-weight: 700; color: var(--red);
-    }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 700; color: var(--red); }
     .stat-label { font-size: 12px; color: var(--gray); margin-top: 4px; }
 
     /* SKILLS */
@@ -191,22 +179,32 @@
     .pill:hover { border-color: var(--red); color: var(--red); }
     .pill.highlight { background: var(--red-soft); color: var(--red-text); border-color: rgba(192,57,43,.2); font-weight: 500; }
 
-    /* INTERNSHIP */
+    /* INTERNSHIP TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 19px; top: 24px; bottom: 24px;
+      width: 2px; background: var(--border);
+    }
+    .intern-item { display: flex; gap: 1.5rem; align-items: flex-start; position: relative; }
+    .intern-item + .intern-item { margin-top: 1.5rem; }
+    .timeline-dot {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; z-index: 1;
+      font-size: 14px; font-weight: 600; color: var(--red);
+    }
     .intern-card {
       background: var(--white); border: 1px solid var(--border);
-      border-radius: 14px; padding: 2rem; max-width: 740px;
+      border-radius: 14px; padding: 1.75rem; flex: 1;
       position: relative; overflow: hidden;
     }
     .intern-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
       width: 4px; background: var(--red); border-radius: 4px 0 0 4px;
     }
-    .intern-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem; }
-    .intern-company {
-      font-family: 'Syne', sans-serif;
-      font-size: 20px; font-weight: 700; color: var(--black);
-    }
+    .intern-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: .6rem; }
+    .intern-company { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--black); }
     .intern-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .role-tag {
       background: var(--red-soft); color: var(--red-text);
@@ -218,7 +216,7 @@
       background: var(--cream); padding: 4px 12px;
       border-radius: 6px; border: 1px solid var(--border);
     }
-    .intern-divider { height: 1px; background: var(--border); margin-bottom: 1rem; }
+    .intern-divider { height: 1px; background: var(--border); margin: .75rem 0; }
     .intern-bullets { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
     .intern-bullet { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--gray); line-height: 1.65; }
     .bullet-marker {
@@ -245,10 +243,7 @@
       border-radius: 20px; width: fit-content;
       border: 1px solid rgba(192,57,43,.15);
     }
-    .project-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px; font-weight: 700; color: var(--black); line-height: 1.3;
-    }
+    .project-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--black); line-height: 1.3; }
     .project-desc { font-size: 13px; color: var(--gray); line-height: 1.7; flex: 1; }
     .stack-pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .stack-chip {
@@ -274,10 +269,7 @@
     .icon-gold { background: #FEF9EC; }
     .icon-red { background: var(--red-soft); }
     .icon-gray { background: var(--cream); }
-    .ach-prize {
-      font-size: 11px; font-weight: 600; color: var(--red);
-      letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px;
-    }
+    .ach-prize { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px; }
     .ach-title { font-size: 13px; font-weight: 500; color: var(--black); line-height: 1.4; margin-bottom: 4px; }
     .ach-desc { font-size: 12px; color: var(--gray); line-height: 1.55; }
 
@@ -320,8 +312,7 @@
     /* FOOTER */
     footer {
       background: var(--black); color: var(--gray-light);
-      text-align: center; padding: 2rem 3rem;
-      font-size: 13px;
+      text-align: center; padding: 2rem 3rem; font-size: 13px;
     }
     footer span { color: var(--red); }
 
@@ -345,6 +336,7 @@
       section { padding: 3.5rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 26px; }
+      .timeline::before { display: none; }
     }
   </style>
 </head>
@@ -379,7 +371,7 @@
         <div class="avatar-circle">DE</div>
         <div class="float-chip chip1">🥈 IEEE 2nd Prize</div>
         <div class="float-chip chip2">BE CSE '26</div>
-        <div class="float-chip chip3">AI/ML Intern @ PROEDUVATE</div>
+        <div class="float-chip chip3">3 Internships</div>
       </div>
     </div>
   </div>
@@ -390,12 +382,12 @@
     <div class="section-title">About me</div>
     <p class="section-desc">A quick look at my journey so far</p>
     <div class="about-grid">
-      <p class="about-text">I'm a Computer Science undergrad passionate about AI, Machine Learning, and Data Science. I've built projects across healthcare AI, NLP, and EdTech — and competed in national-level hackathons including IEEE, Google Developers Group, and JIPMER &amp; IIT Bombay. Currently interning at PROEDUVATE, I love turning complex data into meaningful, real-world solutions.</p>
+      <p class="about-text">I'm a Computer Science undergrad passionate about AI, Machine Learning, and Data Science. I've completed 3 internships, built projects across healthcare AI and NLP, and competed in national-level hackathons including IEEE, Google Developers Group, and JIPMER &amp; IIT Bombay. I love turning complex data into meaningful, real-world solutions.</p>
       <div class="stats-grid">
-        <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">AI/ML projects</div></div>
+        <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Internships</div></div>
         <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Hackathons</div></div>
         <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Top 10 finishes</div></div>
-        <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Internship</div></div>
+        <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">AI/ML projects</div></div>
       </div>
     </div>
   </section>
@@ -405,7 +397,6 @@
     <div class="section-eyebrow">What I Know</div>
     <div class="section-title">Skills</div>
     <p class="section-desc">Languages, frameworks, and tools I work with</p>
-
     <div class="skill-group">
       <div class="skill-group-name">Programming</div>
       <div class="pills">
@@ -454,41 +445,93 @@
     </div>
   </section>
 
-  <!-- INTERNSHIP -->
+  <!-- INTERNSHIPS -->
   <section id="experience">
     <div class="section-eyebrow">Work Experience</div>
-    <div class="section-title">Internship</div>
-    <p class="section-desc">Real-world AI/ML experience</p>
-    <div class="intern-card">
-      <div class="intern-top">
-        <div class="intern-company">PROEDUVATE</div>
-        <div class="intern-meta">
-          <span class="role-tag">AI/ML Intern</span>
-          <span class="duration-tag">Sep 2024 – Apr 2025</span>
+    <div class="section-title">Internships</div>
+    <p class="section-desc">3 internships across AI/ML and Data Science</p>
+
+    <div class="timeline">
+
+      <!-- PROEDUVATE -->
+      <div class="intern-item">
+        <div class="timeline-dot">1</div>
+        <div class="intern-card">
+          <div class="intern-top">
+            <div class="intern-company">PROEDUVATE</div>
+            <div class="intern-meta">
+              <span class="role-tag">AI/ML Intern</span>
+              <span class="duration-tag">Sep 2024 – Apr 2025</span>
+            </div>
+          </div>
+          <div class="intern-divider"></div>
+          <div class="intern-bullets">
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Built an AI-powered HR assistance chatbot to automate employee queries using LangChain-based conversational workflows.</span></div>
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Developed a resume descriptive AI system for candidate analysis, generating structured insights from unstructured resume data.</span></div>
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Implemented prompt chaining and response optimization pipelines to improve accuracy and relevance of LLM outputs.</span></div>
+          </div>
+          <div class="stack-pills">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">LangChain</span>
+            <span class="stack-chip">Prompt Engineering</span>
+            <span class="stack-chip">NLP</span>
+            <span class="stack-chip">LLM</span>
+          </div>
         </div>
       </div>
-      <div class="intern-divider"></div>
-      <div class="intern-bullets">
-        <div class="intern-bullet">
-          <div class="bullet-marker"></div>
-          <span>Built an AI-powered HR assistance chatbot to automate employee queries using LangChain-based conversational workflows.</span>
-        </div>
-        <div class="intern-bullet">
-          <div class="bullet-marker"></div>
-          <span>Developed a resume descriptive AI system for candidate analysis, generating structured insights from unstructured resume data.</span>
-        </div>
-        <div class="intern-bullet">
-          <div class="bullet-marker"></div>
-          <span>Implemented prompt chaining and response optimization pipelines to improve accuracy and relevance of LLM outputs.</span>
+
+      <!-- PRODIGY INFOTECH -->
+      <div class="intern-item">
+        <div class="timeline-dot">2</div>
+        <div class="intern-card">
+          <div class="intern-top">
+            <div class="intern-company">Prodigy Infotech</div>
+            <div class="intern-meta">
+              <span class="role-tag">Data Science Intern</span>
+              <span class="duration-tag">Aug 12 – Sep 12, 2024</span>
+            </div>
+          </div>
+          <div class="intern-divider"></div>
+          <div class="intern-bullets">
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Performed data preprocessing and exploratory data analysis on real-world datasets.</span></div>
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Built machine learning models and evaluated performance using standard metrics.</span></div>
+          </div>
+          <div class="stack-pills">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">Pandas</span>
+            <span class="stack-chip">Scikit-learn</span>
+            <span class="stack-chip">EDA</span>
+          </div>
         </div>
       </div>
-      <div class="stack-pills">
-        <span class="stack-chip">Python</span>
-        <span class="stack-chip">LangChain</span>
-        <span class="stack-chip">Prompt Engineering</span>
-        <span class="stack-chip">NLP</span>
-        <span class="stack-chip">LLM</span>
+
+      <!-- PINNACLE LABS -->
+      <div class="intern-item">
+        <div class="timeline-dot">3</div>
+        <div class="intern-card">
+          <div class="intern-top">
+            <div class="intern-company">Pinnacle Labs Pvt Ltd</div>
+            <div class="intern-meta">
+              <span class="role-tag">Data Science Intern</span>
+              <span class="duration-tag">Jul 9 – Aug 8, 2025</span>
+            </div>
+          </div>
+          <div class="intern-divider"></div>
+          <div class="intern-bullets">
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Cleaned and analyzed datasets using Python and performed exploratory data analysis to uncover key patterns.</span></div>
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Built and evaluated machine learning models for predictive tasks with measurable accuracy improvements.</span></div>
+            <div class="intern-bullet"><div class="bullet-marker"></div><span>Visualized data insights using charts and dashboards to support data-driven business decisions.</span></div>
+          </div>
+          <div class="stack-pills">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">Pandas</span>
+            <span class="stack-chip">Scikit-learn</span>
+            <span class="stack-chip">Matplotlib</span>
+            <span class="stack-chip">EDA</span>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
